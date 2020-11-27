@@ -14,7 +14,7 @@ class MyDocument extends Document {
                 <body>
                     <div className="grid-container">
                         <header>
-                            <Link href="/"><a>React Shopping Cart</a></Link><br/>
+                            <Link href="/">React Shopping Cart</Link><br/>
                             <Link href="/about"><a>About</a></Link>
                         </header>
                         <main>
