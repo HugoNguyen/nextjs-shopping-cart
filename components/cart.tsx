@@ -66,7 +66,7 @@ export const Cart = () => {
             }
 
             {
-                order && <Modal isOpen={true} onRequestClose={closeModal}>
+                order && <Modal isOpen={true} onRequestClose={closeModal} ariaHideApp={false}>
                     <Zoom>
                         <button className="close-modal" onClick={closeModal}>x</button>
                         <div className="order-details">

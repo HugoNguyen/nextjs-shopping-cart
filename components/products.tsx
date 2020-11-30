@@ -61,7 +61,7 @@ const Products = () => {
             }
 
         </Fade>
-        {selectedProduct && <Modal isOpen={true}>
+        {selectedProduct && <Modal isOpen={true} ariaHideApp={false}>
             <Zoom>
                 <button className="close-modal" onClick={closeModal}>x</button>
                 <div className="product-details">
