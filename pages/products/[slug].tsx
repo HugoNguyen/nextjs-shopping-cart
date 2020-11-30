@@ -1,17 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import formatCurrency from '../../util';
 import { GetStaticProps, GetStaticPaths } from 'next';
-import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { addToCart as addToCartAction } from '../../actions/cart.action';
 import Cart from '../../components/cart';
 import data  from '../../data.json';
+import { DefaultLayout } from '../../_layouts/default';
 
 type ProductDetailProps = {
     product: any,
-    addToCart: (product) => void,
-
 }
 
-const ProductDetail = ({ product, addToCart }: ProductDetailProps) => {
+const ProductDetail = ({ product }: ProductDetailProps) => {
+    const dispatch = useDispatch();
+
     const detail = (
         <div className="product-details">
             <img src={product.image} alt={product.title}></img>
@@ -30,7 +32,7 @@ const ProductDetail = ({ product, addToCart }: ProductDetailProps) => {
                     </div>
                     <button
                         onClick={() => {
-                            addToCart(product);
+                            dispatch(addToCartAction(product));
                         }}
                         className="button primary">
                         Add To Cart
@@ -42,17 +44,17 @@ const ProductDetail = ({ product, addToCart }: ProductDetailProps) => {
     );
 
     return (
-        <div className="content">
-            <div className="main">
-                {detail}
+        <DefaultLayout title={product.title} description={product.description}>
+            <div className="content">
+                <div className="main">
+                    {detail}
+                </div>
+                <div className="sidebar">
+                    <Cart />
+                </div>
             </div>
-            <div className="sidebar">
-            <Cart
-                cartItems={[]}
-                removeFromCart={(item) => console.log(`remove item ${item._id}`)}
-            />
-            </div>
-        </div>
+        </DefaultLayout>
+        
     )
 }
 
